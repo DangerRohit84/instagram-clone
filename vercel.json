@@ -1,5 +1,12 @@
 {
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "framework": null,
+  "installCommand": null,
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
   ]
 }
