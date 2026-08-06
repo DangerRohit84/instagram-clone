@@ -2,12 +2,7 @@
   "name": "instagram-clone",
   "version": "1.0.0",
   "description": "Instagram UI clone for learning",
-  "scripts": {
-    "dev": "node dev-server.js",
-    "vercel-build": "echo built"
-  },
   "dependencies": {
-    "express": "^4.21.2",
     "mongodb": "^6.12.0"
   }
 }
