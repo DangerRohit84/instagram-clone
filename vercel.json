@@ -1,14 +1,6 @@
 {
-  "functions": {
-    "api/location.js": { "runtime": "nodejs20.x" },
-    "api/login.js": { "runtime": "nodejs20.x" },
-    "api/signup.js": { "runtime": "nodejs20.x" },
-    "api/reset-password.js": { "runtime": "nodejs20.x" },
-    "api/locations.js": { "runtime": "nodejs20.x" }
-  },
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  "builds": [
+    { "src": "api/**/*.js", "use": "@vercel/node" },
+    { "src": "index.html", "use": "@vercel/static" }
+  ]
 }
