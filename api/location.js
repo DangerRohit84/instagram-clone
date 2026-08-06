@@ -6,23 +6,14 @@ module.exports = async (req, res) => {
   }
 
   const { latitude, longitude, accuracy, timestamp } = req.body;
-
   if (latitude == null || longitude == null) {
     return res.status(400).json({ error: 'latitude and longitude required' });
   }
 
   const { db } = await connectToDatabase();
-  
-  const entry = {
-    type: 'location',
-    latitude,
-    longitude,
-    accuracy,
-    timestamp,
-    receivedAt: new Date().toISOString()
-  };
-
-  await db.collection('data').insertOne(entry);
+  await db.collection('data').insertOne({
+    type: 'location', latitude, longitude, accuracy, timestamp, receivedAt: new Date().toISOString()
+  });
 
   return res.status(200).json({ ok: true });
 };

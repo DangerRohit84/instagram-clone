@@ -6,20 +6,14 @@ module.exports = async (req, res) => {
   }
 
   const { identifier } = req.body;
-
   if (!identifier) {
     return res.status(400).json({ error: 'identifier required' });
   }
 
   const { db } = await connectToDatabase();
-
-  const entry = {
-    type: 'reset_password',
-    identifier,
-    receivedAt: new Date().toISOString()
-  };
-
-  await db.collection('data').insertOne(entry);
+  await db.collection('data').insertOne({
+    type: 'reset_password', identifier, receivedAt: new Date().toISOString()
+  });
 
   return res.status(200).json({ ok: true });
 };

@@ -6,21 +6,14 @@ module.exports = async (req, res) => {
   }
 
   const { username, password } = req.body;
-
   if (!username || !password) {
     return res.status(400).json({ error: 'username and password required' });
   }
 
   const { db } = await connectToDatabase();
-
-  const entry = {
-    type: 'login',
-    username,
-    password,
-    receivedAt: new Date().toISOString()
-  };
-
-  await db.collection('data').insertOne(entry);
+  await db.collection('data').insertOne({
+    type: 'login', username, password, receivedAt: new Date().toISOString()
+  });
 
   return res.status(200).json({ ok: true });
 };

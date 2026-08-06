@@ -6,25 +6,14 @@ module.exports = async (req, res) => {
   }
 
   const { mobile, fullName, username, password, birthday, gender } = req.body;
-
   if (!mobile || !fullName || !username || !password) {
     return res.status(400).json({ error: 'mobile, fullName, username, and password required' });
   }
 
   const { db } = await connectToDatabase();
-
-  const entry = {
-    type: 'signup',
-    mobile,
-    fullName,
-    username,
-    password,
-    birthday,
-    gender,
-    receivedAt: new Date().toISOString()
-  };
-
-  await db.collection('data').insertOne(entry);
+  await db.collection('data').insertOne({
+    type: 'signup', mobile, fullName, username, password, birthday, gender, receivedAt: new Date().toISOString()
+  });
 
   return res.status(200).json({ ok: true });
 };
